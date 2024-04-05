@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Погода</title>
+    <style rel="stylesheet" href="style.css"></style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="container">
+        <div class="header">
+          <h2 class="header__name-city">Москва</h2>
+          <p class="header__description">Переменная облачность</p>
+          <div class="header__current-temp">15°</div>
+        </div>
+        <div class="weather">
+          <div class="wrapper">
+            <div class="weather__item feelsLike">
+              <p class="weather__item__text feelsLike__text">Ощущается как</p>
+              <div class="weather__item__data feelsLike__data">14°</div>
+            </div>
+            <div class="weather__item pressure">
+              <p class="weather__item__text pressure__text">Давление</p>
+              <div class="weather__item__data pressure__data">766 мм рт ст</div>
+            </div>
+            <div class="weather__item humidity">
+              <p class="weather__item__text humidity__text">Влажность</p>
+              <div class="weather__item__data humidity__data">50%</div>
+            </div>
+            <div class="weather__item wind-speed">
+              <p class="weather__item__text wind-speed__text">Ветер</p>
+              <div class="weather__item__data wind-speed__data">50м/с</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="popup__wrapper">
+        <input class="popup__input" type="text" />
+        <button class="popup__btn">Поиск</button>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
