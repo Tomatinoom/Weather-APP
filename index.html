@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,10 +9,10 @@
   <body>
     <div class="app">
       <div class="container">
-        <div class="header">
-          <h2 class="header__name-city">Москва</h2>
-          <p class="header__description">Переменная облачность</p>
-          <div class="header__current-temp">15°</div>
+        <div class="top">
+          <h2 class="top__name-city">Екатеринбург</h2>
+          <p class="top__description">Переменная облачность</p>
+          <div class="top__current-temp">15°</div>
         </div>
         <div class="weather">
           <div class="wrapper">
@@ -30,7 +30,7 @@
             </div>
             <div class="weather__item wind-speed">
               <p class="weather__item__text wind-speed__text">Ветер</p>
-              <div class="weather__item__data wind-speed__data">50м/с</div>
+              <div class="weather__item__data wind-speed__data">5м/с</div>
             </div>
           </div>
         </div>
@@ -38,8 +38,8 @@
     </div>
     <div class="popup">
       <div class="popup__wrapper">
-        <input class="popup__input" type="text" />
-        <button class="popup__btn">Поиск</button>
+        <input class="popup__input" type="text" placeholder="введите название"/>
+        <button class="popup__btn" id="popup__btn">Поиск</button>
       </div>
     </div>
 
