@@ -14,7 +14,7 @@ let dataWeather = {
   windSpeed: 0,
 };
 
-let API_KEY = "85f08f9077eff1a58726191d1307c3ad";
+let API_KEY = "";
 let url = new URL('https://api.openweathermap.org/data/2.5/weather');
 url.searchParams.set('q', `${dataWeather.titleOfCity}`)
 url.searchParams.set('appid', `${API_KEY}`)
