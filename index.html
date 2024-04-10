@@ -5,40 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Погода</title>
     <style rel="stylesheet" href="style.css"></style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="app">
-      <div class="container">
-        <div class="top">
+      <!-- <div class="container">
+        <header class="top">
           <h2 class="top__name-city">Екатеринбург</h2>
           <p class="top__description">Переменная облачность</p>
           <div class="top__current-temp">15°</div>
-        </div>
-        <div class="weather">
+        </header>
+        <main class="weather">
           <div class="wrapper">
-            <div class="weather__item feelsLike">
-              <p class="weather__item__text feelsLike__text">Ощущается как</p>
-              <div class="weather__item__data feelsLike__data">14°</div>
+            <div class="feelsLike">
+              <p class="feelsLike__text">Ощущается как</p>
+              <p class="feelsLike__data">14°</p>
             </div>
-            <div class="weather__item pressure">
-              <p class="weather__item__text pressure__text">Давление</p>
-              <div class="weather__item__data pressure__data">766 мм рт ст</div>
+            <div class="pressure">
+              <p class="pressure__text">Давление</p>
+              <p class="pressure__data">766 мм рт ст</p>
             </div>
-            <div class="weather__item humidity">
-              <p class="weather__item__text humidity__text">Влажность</p>
-              <div class="weather__item__data humidity__data">50%</div>
+            <div class="humidity">
+              <p class="humidity__text">Влажность</p>
+              <p class="humidity__data">50%</p>
             </div>
-            <div class="weather__item wind-speed">
-              <p class="weather__item__text wind-speed__text">Ветер</p>
-              <div class="weather__item__data wind-speed__data">5м/с</div>
+            <div class="wind-speed">
+              <p class="wind-speed__text">Ветер</p>
+              <p class="wind-speed__data">5м/с</p>
             </div>
           </div>
-        </div>
-      </div>
+        </main>
+      </div> -->
     </div>
     <div class="popup">
       <div class="popup__wrapper">
-        <input class="popup__input" type="text" placeholder="введите название"/>
+        <!-- <div class="sun">
+          <div class="sunrise">
+            <p class="sunrise__text">Восход</p>
+            <p class="sunrise__data"></p>
+          </div>
+          <div class="sunset">
+            <p class="sunset__text">Заход</p>
+            <p class="sunset__data"></p>
+          </div>
+        </div> -->
+        <input
+          class="popup__input"
+          type="text"
+          placeholder="введите название"
+        />
         <button class="popup__btn" id="popup__btn">Поиск</button>
       </div>
     </div>
