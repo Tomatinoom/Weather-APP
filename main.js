@@ -1,9 +1,8 @@
 //Написать выбор города из списка
-// написать функцию для сброса
-// кнопка поиска для перехода к попап
 //улучшить апи, убрать все лишнее
-//Локальное хранение
 // восход и заход солнца
+//рефакторинг рендера
+// дата в углу страницы
 
 let dataWeather = {
   titleOfCity: "Москва",
@@ -21,10 +20,12 @@ let dataWeather = {
   windSpeed: 0,
 };
 
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
   if (window.localStorage.length) {
     dataWeather = JSON.parse(window.localStorage.getItem("dataWeather"));
     renderComponents(dataWeather);
+    loader.classList.remove("loader--active");
+    togglePopup();
   }
 });
 
@@ -36,95 +37,121 @@ url.searchParams.set("lang", "ru");
 url.searchParams.set("units", "metric");
 let urlNow = url;
 
-const btnGetweather = document.getElementById("popup__btn");
+const btnGetWeather = document.getElementById("popup__btn");
 const popupInput = document.querySelector(".popup__input");
-btnGetweather.addEventListener("click", () => {
+const btnChangeCity = document.querySelector(".btn__change-city");
+const popup = document.querySelector(".popup");
+const loader = document.querySelector(".loader");
+
+function handlerGetWeather() {
   dataWeather = {
     ...dataWeather,
     titleOfCity: popupInput.value,
   };
+  loader.classList.add("loader--active");
   url.searchParams.set("q", `${dataWeather.titleOfCity}`);
   getData(urlNow);
-});
-popupInput.addEventListener("keypress", (event) => {
+  togglePopup();
+}
+function handlerInput(event) {
   if (event.key === "Enter") {
-    dataWeather = {
-      ...dataWeather,
-      titleOfCity: event.target.value,
-    };
-    url.searchParams.set("q", `${dataWeather.titleOfCity}`);
-    getData(urlNow);
+    if (event.target.value.length > 1) {
+      dataWeather = {
+        ...dataWeather,
+        titleOfCity: event.target.value,
+      };
+      loader.classList.add("loader--active");
+      url.searchParams.set("q", `${dataWeather.titleOfCity}`);
+      event.target.value = "";
+      getData(urlNow);
+      togglePopup();
+    }
   }
-});
-// fetch(
-//   `https://api.openweathermap.org/data/2.5/forecast?q=${dataWeather.titleOfCity}&lang=ru&units=metric&appid=${API_KEY}`
-// )
-//   .then((result) => result.json())
-//   .then((data) => {
-//     console.log(data);
-//   });
+}
+function togglePopup() {
+  popup.classList.toggle("popup--active");
+  popupInput.focus();
+}
+
+btnGetWeather.addEventListener("click", handlerGetWeather);
+
+popupInput.addEventListener("keypress", handlerInput);
+
+btnChangeCity.addEventListener("click", togglePopup);
 
 function getCorrectingValueOfPressure(pressure) {
   return Math.round(pressure * 0.75006);
 }
+
 function getCorrectingValueOfTemp(temp) {
   return Math.round(temp);
 }
+
 function toUpperCaseFirstSimbol(str) {
   return str[0].toUpperCase() + str.slice(1);
 }
 
 function renderComponents(weather) {
-  let weatherHTML = `<div class="container">
-  <button class="search">Выбрать город</button>
-  <header class="top">
-    <h2 class="top__name-city">${weather.titleOfCity}</h2>
-    <p class="top__description">${toUpperCaseFirstSimbol(
-      weather.weatherDescription
-    )}</p>
-    <img src="https://openweathermap.org/img/wn/${
-      dataWeather.icon
-    }.png" alt="" />
-    <div class="top__current-temp">${getCorrectingValueOfTemp(
-      weather.temp
-    )}°</div>
-  </header>
-  <main class="weather">
-    <div class="wrapper">
-      <div class="feelsLike">
-        <p class="feelsLike__text">Ощущается как</p>
-        <p class="feelsLike__data">${getCorrectingValueOfTemp(
-          weather.feelsLike
-        )}°</p>
-      </div>
-      <div class="pressure">
-        <p class="pressure__text">Давление</p>
-        <p class="pressure__data">${getCorrectingValueOfPressure(
-          weather.pressure
-        )}мм рт ст</p>
-      </div>
-      <div class="humidity">
-        <p class="humidity__text">Влажность</p>
-        <p class="humidity__data">${weather.humidity}%</p>
-      </div>
-      <div class="wind-speed">
-        <p class="wind-speed__text">Ветер</p>
-        <p class="wind-speed__data">${getCorrectingValueOfTemp(
-          weather.windSpeed
-        )}м/с</p>
-      </div>
-      
-    </div>
-  </main>
-</div>`;
-  const appWeather = document.querySelector(".app");
+  let weatherHTML = `
+  <div class="app-content">
+    <header class="top">
+      <h2 class="top__name-city">${weather.titleOfCity}</h2>
+      <img class="top__icon" src="https://openweathermap.org/img/wn/${
+        dataWeather.icon
+      }.png" alt="" />
+      <p class="top__description">${toUpperCaseFirstSimbol(
+        weather.weatherDescription
+      )}</p>
+
+      <div class="top__current-temp">${getCorrectingValueOfTemp(
+        weather.temp
+      )}°</div>
+    </header>
+    <main class="weather">
+    <div class="weather__left">
+        <div class="feelsLike">
+          <p class="feelsLike__text">Ощущается как</p>
+          <p class="feelsLike__data">${getCorrectingValueOfTemp(
+            weather.feelsLike
+          )}°</p>
+        </div>
+        <div class="pressure">
+          <p class="pressure__text">Давление</p>
+          <p class="pressure__data">${getCorrectingValueOfPressure(
+            weather.pressure
+          )}мм рт ст</p>
+        </div>
+        </div>
+        <div class="weather__rigth">
+        <div class="humidity">
+          <p class="humidity__text">Влажность</p>
+          <p class="humidity__data">${weather.humidity}%</p>
+        </div>
+        <div class="wind-speed">
+          <p class="wind-speed__text">Ветер</p>
+          <p class="wind-speed__data">${getCorrectingValueOfTemp(
+            weather.windSpeed
+          )}м/с</p>
+        </div>
+        </div>
+    </main>
+  </div>`;
+  const appWeather = document.querySelector(".container-app");
+  removeWeatherHTML();
   appWeather.insertAdjacentHTML("beforeend", weatherHTML);
+  loader.classList.remove("loader--active");
+}
+
+function removeWeatherHTML() {
+  const oldWeatherHTML = document.querySelector(".app-content");
+  if (oldWeatherHTML !== null) {
+    oldWeatherHTML.remove();
+  }
 }
 
 const getData = async (url) => {
   const result = await fetch(url);
   const data = await result.json();
-  console.log(data);
   let {
     name: titleOfCity,
     clouds: { all },
@@ -158,9 +185,7 @@ const getData = async (url) => {
     icon,
     windSpeed,
   };
-  // console.log(dataWeather);
-  renderComponents(dataWeather);
-  // console.log(new Date(dataWeather.sunrise));
   window.localStorage.removeItem("dataWeather");
   window.localStorage.setItem("dataWeather", JSON.stringify(dataWeather));
+  renderComponents(dataWeather);
 };

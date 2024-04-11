@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Погода</title>
-    <style rel="stylesheet" href="style.css"></style>
+    <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,55 +14,21 @@
   </head>
   <body>
     <div class="app">
-      <!-- <div class="container">
-        <header class="top">
-          <h2 class="top__name-city">Екатеринбург</h2>
-          <p class="top__description">Переменная облачность</p>
-          <div class="top__current-temp">15°</div>
-        </header>
-        <main class="weather">
-          <div class="wrapper">
-            <div class="feelsLike">
-              <p class="feelsLike__text">Ощущается как</p>
-              <p class="feelsLike__data">14°</p>
-            </div>
-            <div class="pressure">
-              <p class="pressure__text">Давление</p>
-              <p class="pressure__data">766 мм рт ст</p>
-            </div>
-            <div class="humidity">
-              <p class="humidity__text">Влажность</p>
-              <p class="humidity__data">50%</p>
-            </div>
-            <div class="wind-speed">
-              <p class="wind-speed__text">Ветер</p>
-              <p class="wind-speed__data">5м/с</p>
-            </div>
-          </div>
-        </main>
-      </div> -->
-    </div>
-    <div class="popup">
-      <div class="popup__wrapper">
-        <!-- <div class="sun">
-          <div class="sunrise">
-            <p class="sunrise__text">Восход</p>
-            <p class="sunrise__data"></p>
-          </div>
-          <div class="sunset">
-            <p class="sunset__text">Заход</p>
-            <p class="sunset__data"></p>
-          </div>
-        </div> -->
-        <input
-          class="popup__input"
-          type="text"
-          placeholder="введите название"
-        />
-        <button class="popup__btn" id="popup__btn">Поиск</button>
+      <div class="container-app">
+        <button class="btn__change-city">Выбрать город</button>
+        <span class="loader"></span>
+
+        <div class="popup popup--active">
+          <input
+            class="popup__input"
+            type="text"
+            placeholder="Введите название"
+            autofocus
+          />
+          <button class="popup__btn" id="popup__btn">Поиск</button>
+        </div>
       </div>
     </div>
-
     <script src="main.js"></script>
   </body>
 </html>

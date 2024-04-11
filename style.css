@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  color: #ffffff;
+  background-color: #e3edf1;
+  height: 100vh;
+  overflow: hidden;
+}
+button {
+  cursor: pointer;
+}
+.app {
+  background: linear-gradient(180deg, #5b9ab8, #ffffff 200%);
+  border-radius: 5%;
+  width: 320px;
+  height: 500px;
+  position: relative;
+}
+.btn__change-city {
+  border: none;
+  font-size: 15px;
+  background-color: transparent;
+  border-bottom: 2px solid #fff;
+  color: #ffffff;
+  margin: 25px 0 0 40px;
+  position: relative;
+}
+.btn__change-city::before {
+  content: "";
+  position: absolute;
+  background-image: url(img/marker.svg);
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  left: -25px;
+  top: -7px;
+}
+.top {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 30px;
+}
+.top__name-city {
+  font-size: 30px;
+  padding: 0 20px;
+}
+.top__icon {
+  width: 60px;
+  height: 60px;
+}
+.top__description {
+  padding-bottom: 10px;
+}
+.top__current-temp {
+  font-size: 35px;
+}
+.app-content {
+  margin-top: 40px;
+}
+
+.weather {
+  display: flex;
+  justify-content: space-around;
+}
+.feelsLike {
+  padding-bottom: 20px;
+}
+.humidity {
+  padding-bottom: 20px;
+}
+.popup {
+  width: 100%;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(250, 83, 158);
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.popup.popup--active {
+  opacity: 100%;
+  pointer-events: auto;
+}
+.popup__input {
+  width: 70%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #35383a;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+.popup__input::placeholder {
+  color: #fff;
+}
+.popup__btn {
+  font-family: "Roboto", sans-serif;
+  border: none;
+  background-color: aqua;
+  font-size: 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  padding: 5px;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #525658;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  position: absolute;
+  left: 43%;
+  top: 43%;
+  opacity: 0;
+}
+.loader.loader--active {
+  opacity: 100%;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
